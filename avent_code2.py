@@ -1,7 +1,8 @@
 # Solve Avent of Code Day 2
 # Lauryne Feuvrier _ 25.09.25
 
-res = 0
+res1 = 0
+res2 = 0
 
 def check(list):
     diff_niv = []
@@ -12,7 +13,7 @@ def check(list):
     ecarts_valides = all(1 <= abs(d) <= 3 for d in diff_niv)
     return ((croissant or decroissant) and ecarts_valides)
 
-
+# Partie 1 & 2: 
 with open("input2.txt") as file:
     for line in file:
         rapport = list(line.split())
@@ -23,14 +24,17 @@ with open("input2.txt") as file:
             list_niv.append(int(niveau))
 
         if check(list_niv): 
-            res += 1
+            res1 += 1
+        
+        # added for part 2
+            res2 += 1
         else: 
-            print(list_niv)
             j=0
             for j in range(len(list_niv)):
                 reduced_list = list_niv[:j] + list_niv[j+1:]
                 if check(reduced_list):
-                    res+=1
+                    res2+=1
                     break
                     
-print(res)
+print(res1)
+print(res2)
